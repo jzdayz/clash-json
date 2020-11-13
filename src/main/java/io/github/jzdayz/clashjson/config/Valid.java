@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +36,9 @@ public class Valid {
         Map<String, String> rr = new HashMap<>();
         urlData.getData().forEach((k, v) -> {
             String kk = desede.decryptStr(k);
+            log.info("{}=>{}",k,kk);
             String vv = desede.decryptStr(v);
+            log.info("{}=>{}",v,vv);
             rr.put(kk, vv);
         });
         urlData.setData(rr);

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.util.*;
@@ -53,6 +54,8 @@ public class DataService {
 
     private String doCleanYaml(String yaml) {
         try {
+            DumperOptions options = new DumperOptions();
+            options.setPrettyFlow(true);
             Yaml ya = new Yaml();
             Map map = ya.loadAs(yaml, Map.class);
             handlerYaml(map);
